@@ -57,6 +57,11 @@ app.use(function (err, req, res, next) {
     res.status(500).send('Something broke!');
 });
 
+const seedPost = require("./seeding/seedPosts");
+seedPost.seedPost("./seeding/seeds/postList1.json");
+
 app.listen(3000, function (){
     console.log('Server started on port 3000');
 });
+
+
