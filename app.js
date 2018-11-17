@@ -40,7 +40,7 @@ app.use(function (req, res, next) {
 });
 
 // requiring routes
-// app.use(indexRoutes);
+app.use(indexRoutes);
 app.use(postRoutes);
 // app.use(profileRoutes);
 

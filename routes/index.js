@@ -1,5 +1,5 @@
 const express = require('express'),
-      User = require('../models/user'),
+      User = require('../models/User'),
       passport = require('passport');
 
 const router = express.Router();
@@ -30,7 +30,7 @@ router.get('/signup', function (req, res) {
 
 router.post('/signup', function (req, res) {
     User.register(new User({
-        username: req.body.username,
+        username: req.body.name,
         email: req.body.email,
         posts: [],
     }),
@@ -50,3 +50,5 @@ router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 });
+
+module.exports = router;
