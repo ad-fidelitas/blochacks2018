@@ -11,6 +11,23 @@ h3 {
   padding: 0;
 }
 
+.android-sub-slogan div {
+  text-align: center;
+  padding: 0 10%;
+}
+
+.slideshow {
+  height: 500px;
+  background: grey;
+}
+
+.slideshow-img {
+}
+
+.mdl-layout__drawer h3 {
+  padding-top: 100px;
+}
+
 ::-moz-selection {
   background-color: #6ab344;
   color: #fff;
@@ -152,7 +169,7 @@ h3 {
 
 .android-be-together-section {
   position: relative;
-  height: 800px;
+  height: 620px;
   width: auto;
   background-color: #f3f3f3;
   background: url('images/slide01.jpg') center 30% no-repeat;
