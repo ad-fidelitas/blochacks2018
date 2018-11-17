@@ -25,6 +25,7 @@ app.use(require('express-session')({
 app.use(express.static(__dirname + '/public'));
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(express.bodyParser());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
@@ -40,7 +41,6 @@ app.use(function (req, res, next) {
 });
 
 // requiring routes
-
 app.use("/post", postRoutes);
 app.use(indexRoutes);
 // app.use(profileRoutes);
