@@ -1,67 +1,5 @@
-<!doctype html>
 
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Index</title>
-
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-	  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="$$hosted_libs_prefix$$/$$version$$/material.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-	  
-  </head>
-  <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-
-      <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
-        <div class="mdl-layout__header-row">
-          <span class="android-title mdl-layout-title">
-            <h3>COMPATRIOT</h3>
-          </span>
-          <!-- Add spacer, to align navigation to the right in desktop -->
-          <div class="android-header-spacer mdl-layout-spacer"></div>
-          <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search-field">
-            </div>
-          </div>
-          <!-- Navigation -->
-          <div class="android-navigation-container">
-            <nav class="android-navigation mdl-navigation">
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Stories</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">About Us</a>
-              <% if (!currentUser){ %>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/signup">Sign Up</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/login">Login</a>
-              <% } else { %>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Hello <%= currentUser.username %>!</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/logout">Logout</a>
-              <% } %>
-            </nav>
-          </div>
-          <span class="android-mobile-title mdl-layout-title">
-          <h3>COMPATRIOT</h3>                      
-          </span>
-        </div>
-      </div>
-
-      <div class="android-drawer mdl-layout__drawer">
-        <span class="mdl-layout-title">
-          <h3>COMPATRIOT</h3>          
-        </span>
-        <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Stories</a>
-          <a class="mdl-navigation__link" href="">About Us</a>
-          <a class="mdl-navigation__link" href="/login">Login</a>
-          <a class="mdl-navigation__link" href="/signup">Sign Up</a>
-        </nav>
-      </div>
+<% include partials/header %>
 
       <div class="android-content mdl-layout__content">
         <a name="top"></a>
@@ -222,32 +160,5 @@
           </div>
         </div>
 
-        <footer class="android-footer mdl-mega-footer">
-          <div class="mdl-mega-footer--top-section">
-            <div class="mdl-mega-footer--left-section">
-              <button class="mdl-mega-footer--social-btn"></button>
-              &nbsp;
-              <button class="mdl-mega-footer--social-btn"></button>
-              &nbsp;
-              <button class="mdl-mega-footer--social-btn"></button>
-            </div>
-            <div class="mdl-mega-footer--right-section">
-              <a class="mdl-typography--font-light" href="#top">
-                Back to Top
-                <i class="material-icons">expand_less</i>
-              </a>
-            </div>
-          </div>
-
-          <div class="mdl-mega-footer--middle-section">
-            <p class="mdl-typography--font-light">© 2018 Burnout, BlockHacks</p>
-          </div>
-
-        </footer>
-      </div>
-    </div>
-    <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/android-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
-    <script src="/javascript/slideshow.js"></script>
-    <script src="$$hosted_libs_prefix$$/$$version$$/material.min.js"></script>
-  </body>
-</html>
+<% include partials/footer %>
+        
