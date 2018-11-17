@@ -25,6 +25,7 @@ app.use(require('express-session')({
 app.use(express.static(__dirname + '/public'));
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(express.bodyParser());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
@@ -40,13 +41,8 @@ app.use(function (req, res, next) {
 });
 
 // requiring routes
-<<<<<<< HEAD
-// app.use(indexRoutes);
 app.use("/post", postRoutes);
-=======
 app.use(indexRoutes);
-app.use(postRoutes);
->>>>>>> c9803d667c1b96a01570432dbd698073714cf982
 // app.use(profileRoutes);
 
 // MongoDB set-up
