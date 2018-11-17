@@ -1,19 +1,28 @@
+const config = {
+    seed:true
+}
+
 const express               = require('express')
+
       bodyParser            = require('body-parser'),
       mongoose              = require('mongoose'),
       // Models:
       Post                  = require('./models/Post'),
       User                  = require('./models/User'),
+      multer = require('multer'),
       passport              = require('passport'),
       LocalStrategy         = require('passport-local'),
       passportLocalMongoose = require('passport-local-mongoose'),
-      methodOverride        = require('method-override'),
+      methodOverride        = require('method-override');
+
+const app = express();
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended : true}));
       // Routes:
-      postRoutes = require('./routes/posts'),
+const postRoutes = require('./routes/posts'),
       profileRoutes = require('./routes/profile'),
       indexRoutes = require('./routes/index');
 
-const app = express();
 
 // Config:
 app.set('view engine', 'ejs');
@@ -26,7 +35,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(passport.initialize());
 app.use(passport.session());
 // app.use(express.bodyParser());
-app.use(bodyParser.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
 // passport auth:
@@ -41,6 +49,7 @@ app.use(function (req, res, next) {
 });
 
 // requiring routes
+
 app.use("/post", postRoutes);
 app.use(indexRoutes);
 // app.use(profileRoutes);
@@ -51,6 +60,17 @@ mongoose.connect('mongodb://localhost:27017/blochacks', {useNewUrlParser:true});
 app.get('/', (req, res) => {
     res.render('index');
 })
+
+if(config.seed) {
+    const seed = require("./seeding/seed");
+    seed.exec()
+    .catch((err)=>{
+        console.log("seeding has failed");
+        console.log(err);
+    })
+}
+
+
 
 // 404 error
 app.use(function (req, res, next) {
