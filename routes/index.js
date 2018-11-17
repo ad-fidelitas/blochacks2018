@@ -1,5 +1,5 @@
 const express = require('express'),
-      User = require('../models/user'),
+      User = require('../models/User'),
       passport = require('passport');
 
 const router = express.Router();

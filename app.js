@@ -41,7 +41,7 @@ app.use(function (req, res, next) {
 
 // requiring routes
 // app.use(indexRoutes);
-app.use(postRoutes);
+app.use("/post", postRoutes);
 // app.use(profileRoutes);
 
 // MongoDB set-up
@@ -61,9 +61,6 @@ app.use(function (err, req, res, next) {
     console.error(err.stack)
     res.status(500).send('Something broke!');
 });
-
-const seedPost = require("./seeding/seedPosts");
-seedPost.seedPost("./seeding/seeds/postList1.json");
 
 app.listen(3000, function (){
     console.log('Server started on port 3000');

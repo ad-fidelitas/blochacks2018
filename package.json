@@ -4,7 +4,7 @@
   "description": "Hackathon project for Blochacks2018",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "test": "jest"
   },
   "repository": {
