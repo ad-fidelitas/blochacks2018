@@ -29,10 +29,6 @@ router.get('/signup', function (req, res) {
 });
 
 router.post('/signup', function (req, res) {
-    console.log('/signup');
-    console.log(req);
-    console.log(req.body)
-    console.log(req.body.username);
     User.register(new User({
         username: req.body.username,
         email: req.body.email,
@@ -43,9 +39,7 @@ router.post('/signup', function (req, res) {
             console.log(err);
             return res.render('signup', {err : err});
         }
-        console.log('Here');
         passport.authenticate('local')(req, res, function () {
-            console.log('HEREE');
             res.redirect('/');
         });
     });

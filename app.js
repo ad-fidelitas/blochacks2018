@@ -1,19 +1,23 @@
-const express               = require('express')
+const express               = require('express'),
       bodyParser            = require('body-parser'),
       mongoose              = require('mongoose'),
       // Models:
       Post                  = require('./models/Post'),
       User                  = require('./models/User'),
+      multer = require('multer'),
       passport              = require('passport'),
       LocalStrategy         = require('passport-local'),
       passportLocalMongoose = require('passport-local-mongoose'),
-      methodOverride        = require('method-override'),
+      methodOverride        = require('method-override');
+
+const app = express();
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended : true}));
       // Routes:
-      postRoutes = require('./routes/posts'),
+const postRoutes = require('./routes/posts'),
       profileRoutes = require('./routes/profile'),
       indexRoutes = require('./routes/index');
 
-const app = express();
 
 // Config:
 app.set('view engine', 'ejs');
@@ -26,7 +30,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(passport.initialize());
 app.use(passport.session());
 // app.use(express.bodyParser());
-app.use(bodyParser.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
 // passport auth:
