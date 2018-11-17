@@ -4,6 +4,10 @@ function fetchUser(userId) {
     return User.findById(userId);
 }
 
+function fetchUserByUsername(username) {
+    return User.findOne({username: username});
+}
+
 
 function createUser(username, email, password) {
     return User.register(new User({
@@ -14,7 +18,13 @@ function createUser(username, email, password) {
         password);
 }
 
+function updateUser(userId, update) {
+    return User.findByIdAndUpdate(userId, update);
+}
+
 module.exports = {
     createUser : createUser,
-    fetchUserUser : fetchUser
+    fetchUserByUsername,fetchUserByUsername,
+    fetchUserUser : fetchUser,
+    updateUser:updateUser
 }

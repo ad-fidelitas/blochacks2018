@@ -19,7 +19,7 @@ function isLoggedIn(req, res, next) {
 // Make a more recent Model
 router.get("/", function(req,res){
     // This functionality is based on the fact that Users and Receiver pages are created differently
-    homePageDbs.getQueues()
+    homePageDbs.fetchQueues()
     .then((queues)=>{
         res.json(
             {

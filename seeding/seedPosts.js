@@ -6,8 +6,9 @@ function seedPosts(postsJsonPath) {
     const posts = require(`./seeds/${postsJsonPath}`);
     let postPromises = [];
     posts.forEach((post)=>{
-        postDb.createPost(post);
+        postPromises.push(postDb.createPost(post));
     })
+    
     return Promise.all(postPromises);
 }
 

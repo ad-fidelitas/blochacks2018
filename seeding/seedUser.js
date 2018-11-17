@@ -3,19 +3,19 @@ const seedPosts = require("./seedPosts");
 
 function seedUser(userJsonPath) {
     let userData = require(`./seeds/${userJsonPath}`);
-    return userDb.createUser(userData);
+    return userDb.createUser(userData.username, 
+        userData.email, userData.password);
 }
 
 // Not currently functional
 function seedPostsToUser(userName, postsJsonPath) {
-
-    return userDb.findByName(userName)
+    return userDb.fetchUserByUsername(userName)
     .then((userDoc)=>{
-        seedPosts(userName)
+        seedPosts.seedPosts(postsJsonPath)
         .then((postDocs)=>{
             postIds = postDocs.map((postDoc)=>postDoc._id);
-            userDoc.posts = postIds;
-            return userDb.updateUser(userDoc._id, userDoc);
+            // userDoc.posts = postIds;
+            return userDb.updateUser(userDoc._id, {posts: postIds});
         })
     })
 }

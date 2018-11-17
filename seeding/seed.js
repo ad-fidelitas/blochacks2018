@@ -4,8 +4,8 @@ const seedUser = require("./seedUser");
 
 
 function exec(){
-    return cleanDb();
-    // .then((res)=>seedUser.seedUserAndPosts("User1.json", "postList1.json"));
+    return cleanDb()
+    .then((res)=>seedUser.seedUserAndPosts("User1.json", "postList1.json"));
 }
 
 module.exports = {
