@@ -1,32 +1,32 @@
-// const userDb = require("../db_interactions/user");
-const postDb = require("../db_interactions/post");
+const userDb = require("../db_interactions/user.js");
+const seedPosts = require("./seedPosts");
 
+function seedUser(userJsonPath) {
+    let userData = require(`./seeds/${userJsonPath}`);
+    return userDb.createUser(userData);
+}
 
 // Not currently functional
+function seedPostsToUser(userName, postsJsonPath) {
 
-// function seedPostsToUser(userName, postsJsonPath) {
-    
-//     return userDb.findByName(userName)
-//     .then((userDoc)=>{
-//         seedPosts(userName)
-//         .then((postDocs)=>{
-//             postIds = postDocs.map((postDoc)=>postDoc._id);
-//             userDoc.posts = postIds;
-//             return userDb.updateUser(userDoc._id, userDoc);
-//         })
-//     })
-// }
-
-
-function seedPosts(postsJsonPath) {
-    const posts = require(postsJsonPath);
-    let postPromises = [];
-    posts.forEach((post)=>{
-        postDb.create(post);
+    return userDb.findByName(userName)
+    .then((userDoc)=>{
+        seedPosts(userName)
+        .then((postDocs)=>{
+            postIds = postDocs.map((postDoc)=>postDoc._id);
+            userDoc.posts = postIds;
+            return userDb.updateUser(userDoc._id, userDoc);
+        })
     })
-    return Promise.all(postPromises);
+}
+
+function seedUserAndPosts(userJson, postsJsonPath){
+    seedUser(userJson)
+    .then((userDoc)=>seedPostsToUser(userDoc.username, postsJsonPath))
 }
 
 module.exports = {
-    seedPosts : seedPosts
+    seedUser : seedUser,
+    seedPostsToUser : seedPostsToUser,
+    seedUserAndPosts: seedUserAndPosts
 }
