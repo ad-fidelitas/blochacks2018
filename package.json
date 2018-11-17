@@ -1,0 +1,23 @@
+{
+  "name": "blochacks2018",
+  "version": "1.0.0",
+  "description": "Hackathon project for Blochacks2018",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burn-out/blochacks2018.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/burn-out/blochacks2018/issues"
+  },
+  "homepage": "https://github.com/burn-out/blochacks2018#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}
