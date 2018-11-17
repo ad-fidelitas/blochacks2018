@@ -1,4 +1,6 @@
 const express               = require('express')
+      bodyParser            = require('body-parser'),
+      mongoose              = require('mongoose'),
       // Models:
       Post                  = require('./models/Post'),
       User                  = require('./models/User'),
@@ -38,13 +40,16 @@ app.use(function (req, res, next) {
 });
 
 // requiring routes
-app.use(indexRoutes);
+// app.use(indexRoutes);
 app.use(postRoutes);
-app.use(profileRoutes);
+// app.use(profileRoutes);
 
 // MongoDB set-up
 mongoose.connect('mongodb://localhost:27017/blochacks', {useNewUrlParser:true});
 
+app.get('/', (req, res) => {
+    res.render('index');
+})
 
 // 404 error
 app.use(function (req, res, next) {
