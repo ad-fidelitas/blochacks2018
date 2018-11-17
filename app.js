@@ -1,3 +1,7 @@
+const config = {
+    seed:true
+}
+
 const express               = require('express')
       bodyParser            = require('body-parser'),
       mongoose              = require('mongoose'),
@@ -40,13 +44,10 @@ app.use(function (req, res, next) {
 });
 
 // requiring routes
-<<<<<<< HEAD
 // app.use(indexRoutes);
 app.use("/post", postRoutes);
-=======
 app.use(indexRoutes);
-app.use(postRoutes);
->>>>>>> c9803d667c1b96a01570432dbd698073714cf982
+
 // app.use(profileRoutes);
 
 // MongoDB set-up
@@ -55,6 +56,17 @@ mongoose.connect('mongodb://localhost:27017/blochacks', {useNewUrlParser:true});
 app.get('/', (req, res) => {
     res.render('index');
 })
+
+if(config.seed) {
+    const seed = require("./seeding/seed");
+    seed.exec()
+    .catch((err)=>{
+        console.log("seeding has failed");
+        console.log(err);
+    })
+}
+
+
 
 // 404 error
 app.use(function (req, res, next) {
