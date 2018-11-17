@@ -1,4 +1,9 @@
-const express               = require('express'),
+const config = {
+    seed:true
+}
+
+const express               = require('express')
+
       bodyParser            = require('body-parser'),
       mongoose              = require('mongoose'),
       // Models:
@@ -44,6 +49,7 @@ app.use(function (req, res, next) {
 });
 
 // requiring routes
+
 app.use("/post", postRoutes);
 app.use(indexRoutes);
 // app.use(profileRoutes);
@@ -54,6 +60,17 @@ mongoose.connect('mongodb://localhost:27017/blochacks', {useNewUrlParser:true});
 app.get('/', (req, res) => {
     res.render('index');
 })
+
+if(config.seed) {
+    const seed = require("./seeding/seed");
+    seed.exec()
+    .catch((err)=>{
+        console.log("seeding has failed");
+        console.log(err);
+    })
+}
+
+
 
 // 404 error
 app.use(function (req, res, next) {

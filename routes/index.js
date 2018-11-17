@@ -4,6 +4,8 @@ const User = require('../models/User'),
       passport = require('passport'),
       userDb = require('../db_interactions/user');
 
+const homePageDbs = require("../db_interactions/home_page");
+
 
 //MIDDLEWARE
 function isLoggedIn(req, res, next) {
@@ -12,6 +14,25 @@ function isLoggedIn(req, res, next) {
     }
     res.redirect('/login');
 }
+
+// Make a priorityAccounts object
+// Make a more recent Model
+router.get("/", function(req,res){
+    // This functionality is based on the fact that Users and Receiver pages are created differently
+    homePageDbs.getQueues()
+    .then((queues)=>{
+        res.json(
+            {
+                recent: queues.filter((queue)=>(queue.type == "recent"))[0],
+                support: queues.filter((queue)=>(queue.type == "support"))[0]
+            }
+        )
+    });
+})
+
+// how do I test this after the fact
+// Seed with receiver pages (receiverPage has a date)
+
 
 // Login routes
 router.get('/login', function (req, res) {

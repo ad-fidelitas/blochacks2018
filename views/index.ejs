@@ -19,7 +19,7 @@
       <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
           <span class="android-title mdl-layout-title">
-            <h3>BURNOUT</h3>
+            <h3>COMPATRIOT</h3>
           </span>
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="android-header-spacer mdl-layout-spacer"></div>
@@ -39,14 +39,14 @@
             </nav>
           </div>
           <span class="android-mobile-title mdl-layout-title">
-          <h3>BURNOUT</h3>                      
+          <h3>COMPATRIOT</h3>                      
           </span>
         </div>
       </div>
 
       <div class="android-drawer mdl-layout__drawer">
         <span class="mdl-layout-title">
-          <h3>BURNOUT</h3>          
+          <h3>COMPATRIOT</h3>          
         </span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="/login">Login</a>
@@ -66,13 +66,41 @@
           </div>
         </div>
 
-        <div class="slideshow">
-            <img class="slideshow-img" src="/css/res/more-from-1.png">
-            <img class="slideshow-img" src="/css/res/more-from-1.png">
-            <img class="slideshow-img" src="/css/res/more-from-1.png">
-            <img class="slideshow-img" src="/css/res/more-from-1.png">
-      </div>
+        <div class="section-title">Most in Need</div>
+        <div class="different-color-container">
+          <div class="slideshow-container">
+
+              <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="/css/res/more-from-1.png" style="width:100%">
+                <div class="text">Caption Text</div>
+              </div>
+            
+              <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <img src="/css/res/more-from-2.png" style="width:100%">
+                <div class="text">Caption Two</div>
+              </div>
+            
+              <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <img src="/css/res/more-from-3.png" style="width:100%">
+                <div class="text">Caption Three</div>
+              </div>
+            
+              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+              <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+            
+            <div style="text-align:center">
+              <span class="dot" onclick="currentSlide(1)"></span> 
+              <span class="dot" onclick="currentSlide(2)"></span> 
+              <span class="dot" onclick="currentSlide(3)"></span> 
+            </div>
+        </div>
        
+        <div class="section-title">Stories</div>
         <div class="android-more-section">
           <div class="android-card-container mdl-grid">
             <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
@@ -236,6 +264,7 @@
       </div>
     </div>
     <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/android-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
+    <script src="/javascript/slideshow.js"></script>
     <script src="$$hosted_libs_prefix$$/$$version$$/material.min.js"></script>
   </body>
 </html>
