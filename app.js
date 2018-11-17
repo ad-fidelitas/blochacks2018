@@ -64,6 +64,9 @@ app.get('/', (req, res) => {
 if(config.seed) {
     const seed = require("./seeding/seed");
     seed.exec()
+    .then((res)=>{
+        console.log("ol")
+    })
     .catch((err)=>{
         console.log("seeding has failed");
         console.log(err);
