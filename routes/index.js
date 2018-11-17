@@ -1,8 +1,8 @@
-const express = require('express'),
-      User = require('../models/User'),
+const express = require('express');
+const router = express.Router();
+const User = require('../models/User'),
       passport = require('passport');
 
-const router = express.Router();
 
 //MIDDLEWARE
 function isLoggedIn(req, res, next) {
@@ -29,17 +29,23 @@ router.get('/signup', function (req, res) {
 });
 
 router.post('/signup', function (req, res) {
+    console.log('/signup');
+    console.log(req);
+    console.log(req.body)
+    console.log(req.body.username);
     User.register(new User({
-        username: req.body.name,
+        username: req.body.username,
         email: req.body.email,
-        posts: [],
+        posts: []
     }),
         req.body.password, function (err, user) {
         if (err) {
             console.log(err);
             return res.render('signup', {err : err});
         }
+        console.log('Here');
         passport.authenticate('local')(req, res, function () {
+            console.log('HEREE');
             res.redirect('/');
         });
     });
