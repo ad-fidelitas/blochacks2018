@@ -5,33 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">      
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/forms.css" />
 </head>
 <body>
-
-<form action="/profile/post" method="post">
-  <div class="container">
-    <h4>Share a post</h4>
-
-  
-
-    <input id="upload" type="file" name="newPost" accept="image/jpg"> 
-    <br><br>
-    <input type="text" placeholder="Title" name="title" id="title" required>
-    <br><br>
-    <input  type="text" placeholder="content" name="content" id="content" required>
-<br>
-    
- 
-<br>
-      
-
-
-      
-      <button type="submit" id="submit" class="signupbtn">Post</button>
+    <div class="back-button"><a href="/profile/<%=currentUser.username%>">
+      <i class="fas fa-arrow-left fa-5x"></i></a>
     </div>
-</form>
+
+  <div class="login-page">
+<form action="/profile/post" method="post" class="login-form">
+  <div class="form">
+    <h4>Share a post</h4>
+    <input class="login-form" id="upload"  type="file" name="newPost" accept="image/jpg"> 
+    <input type="text" placeholder="Title" name="title" id="title" required>
+    <input  type="text" placeholder="content" name="content" id="content" required>
+    <button type="submit" id="submit" class="signupbtn">Post</button>
+  </form>
+  </div>
+</div>
+
 
   
 </body>

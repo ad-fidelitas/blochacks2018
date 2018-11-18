@@ -43,7 +43,7 @@
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/signup">Sign Up</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/login">Login</a>
               <% } else { %>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Hello <%= currentUser.username %>!</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/profile/<%= currentUser.username %>">Hello <%= currentUser.username %>!</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/logout">Logout</a>
               <% } %>
             </nav>

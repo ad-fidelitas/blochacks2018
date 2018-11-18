@@ -1,7 +1,136 @@
-<% include partials/header %>
-
-<h1>Profile page of <%= data.profileData.username%></h1>
-
-
-
-<% include partials/footer %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= data.profileData.username%>'s profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">          
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/profile.css" />
+</head>
+<body>
+        <div class="image-display">
+                <div></div>
+              </div>
+              
+              <header>
+                <div class="back-button"><a href="/"><i class="fas fa-home fa-3x"></a></i></div>
+                <div class="profile"><img class="profile-pic" src="/css/res/default-user.png"/>
+                  <div class="profile-sub">
+                    <div class="name"><%= data.profileData.username%></div>
+                    <% if (currentUser.username === data.profileData.username){ %>                    
+                    <a href="#">Edit Profile</a>
+                    <a href="/profile/post/new">Upload Story</a>
+                    <%} else {%>
+                        <a href="#">Donate!</a>
+                        <a href="#">Support!</a>
+                    <%}%>
+                  </div>
+                </div>
+              </header>
+              <div class="main-container">
+                <div class="sidebar-left">
+                  <div class="intro">
+                    <div class="left-header">
+                      <div class="fa fa-globe"></div>
+                      <p>Intro</p>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut ipsum id diam convallis faucibus. Aliquam auctor felis et est porttitor scelerisque nec sed orci. Pellentesque eget orci ligula. Morbi ipsum mi, ultrices eget eros eu, semper egestas ipsum. In hac habitasse platea dictumst. Suspendisse orci libero, ornare et suscipit eu, commodo sit amet dolor. Vestibulum tristique mi eget nulla iaculis, id pretium diam bibendum.</p>
+                    <% if (currentUser.username === data.profileData.username){ %>
+                    <span>UPDATE INFO</span>
+                    <%}%>
+                  </div>
+                </div>
+                <main>
+                  <div class="links">
+                    <ul>
+                      <li>Timeline</li>
+                      <li>About</li>
+                      <li>Donors</li>
+                      <li>Photos</li>
+                      <li>More</li>
+                    </ul>
+                  </div>
+                  <%if (!(data.profileData.donors.includes(currentUser)) && (currentUser.username !== data.profileData.username)) {%>
+                    <h1>Content Not Available. Please Donate if you would like to view this profile!</h1>
+                    <%} else {%>
+                  <div class="post">
+                    <div class="post-head"><img src="https://vignette3.wikia.nocookie.net/mugen/images/6/62/Gaben.jpg"/>
+                      <div class="info"><span><a href="#">Gabe Newell</a></span><span>June 18 at 6:30pm</span></div>
+                    </div>
+                    <div class="post-content">
+                      <p>Half-Life 3 is out !!!</p><img src="http://i4.mirror.co.uk/news/technology-science/technology/article7177657.ece/ALTERNATES/s615b/Half-Life-3.jpg"/>
+                    </div>
+                    <div class="post-foot">
+                      <div class="social">
+                        <div class="fa fa-thumbs-up"></div><span>Like</span>
+                        <div class="fa fa-comment"></div><span>Comment</span>
+                        <div class="fa fa-share"></div><span>Share</span>
+                      </div>
+                      <div class="comment">
+                        <input type="text" placeholder="Write a comment..."/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="post">
+                    <div class="post-head"><img src="https://vignette3.wikia.nocookie.net/mugen/images/6/62/Gaben.jpg"/>
+                      <div class="info"><span><a href="#">Gabe Newell</a><span>liked this.</span></span><span>June 18 at 3:45pm</span></div>
+                    </div>
+                    <div class="post-content">
+                      <p>Save 50% on Portal and Portal 2 and many other games during the Steam Summer Sale !</p>
+                      <p>From June 8, 2017 to June 19, 2017</p><img src="http://thenerdstash.com/wp-content/uploads/2015/05/SteamGamesSales.jpg"/>
+                    </div>
+                    <div class="post-foot">
+                      <div class="social">
+                        <div class="fa fa-thumbs-up"></div><span>Like</span>
+                        <div class="fa fa-comment"></div><span>Comment</span>
+                        <div class="fa fa-share"></div><span>Share</span>
+                      </div>
+                      <div class="comment">
+                        <input type="text" placeholder="Write a comment..."/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="post">
+                    <div class="post-head"><img src="https://vignette3.wikia.nocookie.net/mugen/images/6/62/Gaben.jpg"/>
+                      <div class="info"><span><a href="#">Gabe Newell</a><span>updated his cover photo.</span></span><span>June 18 at 11:30am</span></div>
+                    </div>
+                    <div class="post-content"><img src="https://image.ibb.co/hoTE8Q/1483840.jpg"/></div>
+                    <div class="post-foot">
+                      <div class="social">
+                        <div class="fa fa-thumbs-up"></div><span>Like</span>
+                        <div class="fa fa-comment"></div><span>Comment</span>
+                        <div class="fa fa-share"></div><span>Share</span>
+                      </div>
+                      <div class="comment">
+                        <input type="text" placeholder="Write a comment..."/>
+                      </div>
+                    </div>
+                  </div>
+                  <%}%>
+                </main>
+                <!-- <div class="sidebar-right">
+                  <ul>
+                    <li><img src="https://www.shitpostbot.com/img/sourceimages/reggie-57feb93939cba.jpeg"/><span>Reggie Fils-Aimé</span>
+                      <div class="connected"></div>
+                    </li>
+                    <li><img src="https://games.mxdwn.com/wp-content/uploads/2015/02/Peter.jpg"/><span>Peter Molyneux</span>
+                      <div class="connected"></div>
+                    </li>
+                    <li><img src="https://static.giantbomb.com/uploads/original/1/16944/2573766-john_530_big.jpg"/><span>John Carmack</span>
+                      <div class="connected"></div>
+                    </li>
+                    <li><img src="https://edge.alluremedia.com.au/m/k/2013/06/miyamoto.jpg"/><span>Shigeru Miyamoto</span>
+                      <div class="connected"></div>
+                    </li>
+                    <li><img src="http://i0.kym-cdn.com/entries/icons/original/000/017/752/1427995704118.png"/><span>Todd Howard</span>
+                      <div class="connected"></div>
+                    </li>
+                    <li><img src="http://i0.kym-cdn.com/entries/icons/original/000/020/494/2622339-1064546218-26095.jpg"/><span>John Romero</span>
+                      <div class="connected"></div>
+                    </li>
+                  </ul>
+                </div> -->
+              </div>
+</body>
+</html>
