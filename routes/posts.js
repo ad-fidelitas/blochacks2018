@@ -63,12 +63,13 @@ router.post("/", function(req,res){
     userDb.addPost(userId, newPost)
     .then((postDoc)=>{
         res.json(postDoc);
+
     })
     .catch((err)=>{
         console.log(err)
         res.json(err);
     })
-    res.redirect("mainProfile")
+    res.redirect("/profile")
 })
 
 
