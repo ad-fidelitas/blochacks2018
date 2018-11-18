@@ -2,6 +2,7 @@ const app = require("express");
 const router = app.Router();
 const userDb = require("../db_interactions/user");
 const postDb = require("../db_interactions/post");
+const path = require('path');
 
 //Middleware
 function isLoggedIn(req, res, next) {
@@ -48,31 +49,66 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", function(req,res){
+    upload(req, res, (err) => {
+        if (err) {
+            res.render('newPost', {msg : err});
+        } else {
+            if(req.file == undefined) {
+                return res.render('newPost', {msg: 'Error: No file selected'});
+            }
+            console.log(req.file.filename);
+            Post.create({
+                title: req.body.title,
+                timeStamp: new Date().toISOString(),
+                author: {
+                    id: req.user._id,
+                    username: req.user.username
+                },
+                imgPath: '/uploads' + '/' + req.file.filename,
+                content: req.body.content
+            }, function (err, post) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(post);
+                    User.findOne({username : req.user.username}, function (err, foundUser) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            foundUser.posts.push(post._id);
+                            foundUser.save();
+                            res.redirect('/profile/' + req.user._id);
+                        }
+                    });
+                }
+            });
+        }
+});
     // console.log("posted");
-    let newPost = {
-        title: req.body.title,
-        timeStamp : new Date(new Date()),
-        content: req.body.content
-    };
-    let userId = req.user._id;
+    // let newPost = {
+    //     title: req.body.title,
+    //     timeStamp : new Date(new Date()),
+    //     content: req.body.content
+    // };
+    // let userId = req.user._id;
 
-    postDb.createPost(newPost)
-    .then((postDoc)=>{
-        console.log(postDoc);
-        let oldposts = req.user.posts;
-        let newposts = oldposts.slice();
-        newposts.push(postDoc._id);
-        return userDb.updateUser(userId, {posts:newposts});
+    // postDb.createPost(newPost)
+    // .then((postDoc)=>{
+    //     console.log(postDoc);
+    //     let oldposts = req.user.posts;
+    //     let newposts = oldposts.slice();
+    //     newposts.push(postDoc._id);
+    //     return userDb.updateUser(userId, {posts:newposts});
 
 
 
-    })
-    .then((aok)=>{
-        res.redirect("/profile")
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
+    // })
+    // .then((aok)=>{
+    //     res.redirect("/profile")
+    // })
+    // .catch((err)=>{
+    //     console.log(err);
+    // })
 
     // console.log(req.user.posts);
     // userDb.addPost(userId, newPost)
