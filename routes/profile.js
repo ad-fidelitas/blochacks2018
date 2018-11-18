@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
                 isReceiver : false,
                 posts: []
             }
-            res.render('profile', {data : outBoundObject})
+            res.render('myProfile', {data : outBoundObject})
         })
         .catch((err) => {
             console.log(err);
