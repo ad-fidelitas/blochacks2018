@@ -10,6 +10,10 @@ a {
   text-decoration: none;
 }
 
+#stories {
+  padding-top: 40px;
+}
+
 .section-title {
   margin-bottom: 4%;
   font-size: 60px;
