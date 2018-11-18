@@ -6,9 +6,14 @@ const User = require('../models/User');
 
 router.get('/', (req, res) => {
     if(req.user != undefined) {
-        userDb.fetchUserUser(req.user._id)
+        userDb.fetchUser(req.user._id)
         .then((currUser) => {
-            res.render('profile', {user : currUser})
+            let outBoundObject = {
+                profileData: currUser,
+                isReceiver : false,
+                posts: []
+            }
+            res.render('profile', {data : outBoundObject})
         })
         .catch((err) => {
             console.log(err);
@@ -19,23 +24,23 @@ router.get('/', (req, res) => {
     }
 });
 
-router.get("/:user_id", function(res,req) {
+router.get("/:user_id", function(req,res) {
     let viewerId = undefined;
     if (req.user != undefined) {
         viewerId = req.user._id;
     }
-    let receiverId = req.params.user_id;
+    let receiver = req.params.user_id;
     // Find out if you need to fetch the user from db (or if content )
     // maintained online
     
     // Im here assuming that I'm getting the information straight from the url, so
     // There will be a type problem here between the two type of ids
-    userDb.fetchUser(receiverId)
+    userDb.fetchUserByUsername(receiver)
     .then((receiverDoc)=>{
         let outBoundObject = {
+            profileData: receiverDoc,
             isReceiver : false,
-            posts: [],
-            username: receiverDoc.username,
+            posts: []
         }
         // moneyRaised : receiverDoc.name
         if (viewerId != undefined && (viewerId in receiverDoc.donors)) {
