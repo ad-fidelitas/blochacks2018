@@ -48,6 +48,8 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", function(req,res){
+    console.log(req.body);
+    
     // console.log("posted");
     let newPost = {
         title: req.body.title,

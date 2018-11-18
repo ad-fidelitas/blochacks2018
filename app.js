@@ -53,7 +53,7 @@ app.use(function (req, res, next) {
 
 // requiring routes
 app.use(indexRoutes);
-app.use("/post", postRoutes);
+app.use("/profile/post", postRoutes);
 app.use("/profile", profileRoutes);
 
 // MongoDB set-up
