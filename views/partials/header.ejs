@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="$$hosted_libs_prefix$$/$$version$$/material.min.css">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	  
   </head>
   <body>
@@ -20,7 +21,7 @@
       <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
           <span class="android-title mdl-layout-title">
-            <h3>COMPATRIOT</h3>
+              <a href="/"><h3><b>COMPATRIOT</b></h3></a>
           </span>
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="android-header-spacer mdl-layout-spacer"></div>
@@ -35,6 +36,7 @@
           <!-- Navigation -->
           <div class="android-navigation-container">
             <nav class="android-navigation mdl-navigation">
+              <a class="mdl-navigation__link mdl-typography--text-uppercase donation-icon" href=""><i class="fas fa-hand-holding-heart fa-2x"></i></a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Stories</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">About Us</a>
               <% if (!currentUser){ %>
@@ -46,15 +48,12 @@
               <% } %>
             </nav>
           </div>
-          <span class="android-mobile-title mdl-layout-title">
-          <h3>COMPATRIOT</h3>                      
-          </span>
         </div>
       </div>
 
       <div class="android-drawer mdl-layout__drawer">
         <span class="mdl-layout-title">
-          <h3>COMPATRIOT</h3>          
+            <a href="/"><h3><b>COMPATRIOT</b></h3></a>       
         </span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="">Stories</a>
