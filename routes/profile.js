@@ -52,8 +52,10 @@ router.get("/:user_id", function(req,res) {
                     console.log(err);
                 } else {
                     console.log(foundPosts);
+                    // outBoundObject.posts.push(foundPosts);
                     outBoundObject.posts = foundPosts;
                     outBoundObject.isReceiver = true; 
+                    console.log(outBoundObject);
                     return res.render('profile', {data: outBoundObject}) 
                 }
 

@@ -54,12 +54,16 @@
                   <%if (currentUser == undefined || !(data.profileData.donors.includes(currentUser)) && (currentUser.username !== data.profileData.username)) {%>
                     <h1>Content Not Available. Please Donate if you would like to view this profile!</h1>
                     <%} else {%>
+                  <% for (var i = data.posts.length-1; i >= 0; i--) { %>
                   <div class="post">
                     <div class="post-head"><img src="https://vignette3.wikia.nocookie.net/mugen/images/6/62/Gaben.jpg"/>
-                      <div class="info"><span><a href="#">Gabe Newell</a></span><span>June 18 at 6:30pm</span></div>
+                      <div class="info"><span><a href="#"><%= data.profileData.username %></a></span><span>June 18 at 6:30pm</span></div>
                     </div>
                     <div class="post-content">
-                      <p>Half-Life 3 is out !!!</p><img src="http://i4.mirror.co.uk/news/technology-science/technology/article7177657.ece/ALTERNATES/s615b/Half-Life-3.jpg"/>
+                      <p><%= data.posts[i].content %></p>
+                      <% if (data.posts[i].imgPath != undefined) { %> 
+                        <img src="..<%= data.posts[i].imgPath %>"/>
+                      <% } %>
                     </div>
                     <div class="post-foot">
                       <div class="social">
@@ -72,41 +76,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="post">
-                    <div class="post-head"><img src="https://vignette3.wikia.nocookie.net/mugen/images/6/62/Gaben.jpg"/>
-                      <div class="info"><span><a href="#">Gabe Newell</a><span>liked this.</span></span><span>June 18 at 3:45pm</span></div>
-                    </div>
-                    <div class="post-content">
-                      <p>Save 50% on Portal and Portal 2 and many other games during the Steam Summer Sale !</p>
-                      <p>From June 8, 2017 to June 19, 2017</p><img src="http://thenerdstash.com/wp-content/uploads/2015/05/SteamGamesSales.jpg"/>
-                    </div>
-                    <div class="post-foot">
-                      <div class="social">
-                        <div class="fa fa-thumbs-up"></div><span>Like</span>
-                        <div class="fa fa-comment"></div><span>Comment</span>
-                        <div class="fa fa-share"></div><span>Share</span>
-                      </div>
-                      <div class="comment">
-                        <input type="text" placeholder="Write a comment..."/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="post">
-                    <div class="post-head"><img src="https://vignette3.wikia.nocookie.net/mugen/images/6/62/Gaben.jpg"/>
-                      <div class="info"><span><a href="#">Gabe Newell</a><span>updated his cover photo.</span></span><span>June 18 at 11:30am</span></div>
-                    </div>
-                    <div class="post-content"><img src="https://image.ibb.co/hoTE8Q/1483840.jpg"/></div>
-                    <div class="post-foot">
-                      <div class="social">
-                        <div class="fa fa-thumbs-up"></div><span>Like</span>
-                        <div class="fa fa-comment"></div><span>Comment</span>
-                        <div class="fa fa-share"></div><span>Share</span>
-                      </div>
-                      <div class="comment">
-                        <input type="text" placeholder="Write a comment..."/>
-                      </div>
-                    </div>
-                  </div>
+                  <% } %>
+                  
                   <%}%>
                 </main>
                 <!-- <div class="sidebar-right">
