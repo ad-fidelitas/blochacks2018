@@ -19,7 +19,7 @@
                   <div class="profile-sub">
                     <div class="name"><%= data.profileData.username%></div>
                     <% if (currentUser != undefined && currentUser.username === data.profileData.username){ %>                    
-                    <a href="#">Edit Profile</a>
+                    <a href="/profile/edit">Edit Profile</a>
                     <a href="/profile/post/new">Upload Story</a>
                     <%} else {%>
                         <a href="#">Donate!</a>
@@ -33,7 +33,7 @@
                   <div class="intro">
                     <div class="left-header">
                       <div class="fa fa-globe"></div>
-                      <p>Intro</p>
+                      <p>Story</p>
                     </div>
                     <p><%= data.profileData.description %></p>
                     <% if (currentUser != undefined && currentUser.username === data.profileData.username){ %>
