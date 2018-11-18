@@ -18,7 +18,7 @@
                 <div class="profile"><img class="profile-pic" src="/css/res/default-user.png"/>
                   <div class="profile-sub">
                     <div class="name"><%= data.profileData.username%></div>
-                    <% if (currentUser.username === data.profileData.username){ %>                    
+                    <% if (currentUser != undefined && currentUser.username === data.profileData.username){ %>                    
                     <a href="#">Edit Profile</a>
                     <a href="/profile/post/new">Upload Story</a>
                     <%} else {%>
@@ -35,8 +35,8 @@
                       <div class="fa fa-globe"></div>
                       <p>Intro</p>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut ipsum id diam convallis faucibus. Aliquam auctor felis et est porttitor scelerisque nec sed orci. Pellentesque eget orci ligula. Morbi ipsum mi, ultrices eget eros eu, semper egestas ipsum. In hac habitasse platea dictumst. Suspendisse orci libero, ornare et suscipit eu, commodo sit amet dolor. Vestibulum tristique mi eget nulla iaculis, id pretium diam bibendum.</p>
-                    <% if (currentUser.username === data.profileData.username){ %>
+                    <p><%= data.profileData.description %></p>
+                    <% if (currentUser != undefined && currentUser.username === data.profileData.username){ %>
                     <span>UPDATE INFO</span>
                     <%}%>
                   </div>
@@ -51,7 +51,7 @@
                       <li>More</li>
                     </ul>
                   </div>
-                  <%if (!(data.profileData.donors.includes(currentUser)) && (currentUser.username !== data.profileData.username)) {%>
+                  <%if (currentUser == undefined || !(data.profileData.donors.includes(currentUser)) && (currentUser.username !== data.profileData.username)) {%>
                     <h1>Content Not Available. Please Donate if you would like to view this profile!</h1>
                     <%} else {%>
                   <div class="post">

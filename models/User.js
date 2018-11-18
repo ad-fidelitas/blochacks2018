@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
     donors : [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    description : String
     
 })
 

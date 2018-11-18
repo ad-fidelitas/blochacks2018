@@ -46,11 +46,22 @@ router.get("/:user_id", function(req,res) {
             posts: []
         }
         // moneyRaised : receiverDoc.name
-        if (viewerId != undefined && (viewerId in receiverDoc.donors)) { 
-            outBoundObject.posts = receiverDoc.posts;
-            outBoundObject.isReceiver = true; 
-        } 
-        res.render('profile', {data: outBoundObject}) 
+        if (viewerId != undefined /*&& (viewerId in receiverDoc.donors)*/) { 
+            Post.find({'_id' : { $in: receiverDoc.posts}}, function (err, foundPosts) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(foundPosts);
+                    outBoundObject.posts = foundPosts;
+                    outBoundObject.isReceiver = true; 
+                    return res.render('profile', {data: outBoundObject}) 
+                }
+
+            });
+        } else {
+            console.log('posts not found')
+            res.render('profile', {data: outBoundObject}) 
+        }
         // res.render("feed", outBoundObject);
     })
     .catch((err)=>{

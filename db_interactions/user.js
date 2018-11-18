@@ -18,13 +18,14 @@ function fetchUserByUsername(username) {
 }
 
 
-function createUser(username, email, password) {
+function createUser(username, email, password, description) {
     return User.register(new User({
         username: username,
         email: email,
         posts: [],
         isReceiver: false,
-        donors: []
+        donors: [],
+        description: description
     }),
         password);
 }

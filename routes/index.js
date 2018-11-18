@@ -52,7 +52,7 @@ router.get('/signup', function (req, res) {
 });
 
 router.post('/signup', function (req, res) {
-   userDb.createUser(req.body.username, req.body.email, req.body.password) 
+   userDb.createUser(req.body.username, req.body.email, req.body.password, req.body.description) 
     .then((userDoc)=> {
         passport.authenticate('local')(req, res, function () {
             res.redirect('/');

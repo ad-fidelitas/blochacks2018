@@ -77,7 +77,8 @@ router.post("/", function(req,res){
                         } else {
                             foundUser.posts.push(post._id);
                             foundUser.save();
-                            res.redirect('/profile/' + req.user._id);
+                            console.log(foundUser.posts);
+                            res.redirect('/profile/' + req.user.username);
                         }
                     });
                 }
