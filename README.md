@@ -11,10 +11,14 @@ Hackathon project for Blochacks2018
 Clone repository and `cd` into it.
 
 Run the following:
-```$ mongod```
+```
+$ mongod
+```
 And leave it open in its own terminal.
 
 In another terminal, run:
-```$ npm install && npm start```
+```
+$ npm install && npm start
+```
 
 In your browser, open [localhost:3005](localhost:3005)
