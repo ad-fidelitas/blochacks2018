@@ -87,6 +87,9 @@ router.post("/", function(req,res){
 });
 })
 
+router.get("/edit", (req, res) => {
+    res.render('editPage');
+})
 
 router.post("/edit", function(req,res){
     upload(req, res, (err) => {
