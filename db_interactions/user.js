@@ -52,12 +52,7 @@ function addPost(userId, post) {
 module.exports = {
     createUser : createUser,
     fetchUserByUsername,fetchUserByUsername,
-<<<<<<< HEAD
-    fetchUserUser : fetchUser,
     updateUser:updateUser,
-    addPost: addPost
-=======
-    fetchUser: fetchUser,
-    updateUser:updateUser
->>>>>>> df854e62687eade7d5469f5b70484d112d26ff14
+    addPost: addPost,
+    fetchUser: fetchUser
 }

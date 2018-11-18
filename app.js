@@ -63,7 +63,6 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
-
 ReceiverQueue.create({
     type: "recent",
     users: [],
