@@ -14,7 +14,9 @@ function createUser(username, email, password) {
     return User.register(new User({
         username: username,
         email: email,
-        posts: []
+        posts: [],
+        isReceiver: false,
+        donors: []
     }),
         password);
 }

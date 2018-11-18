@@ -8,7 +8,13 @@ const userSchema = new mongoose.Schema({
     posts : [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
+    }],
+    isReceiver: Boolean,
+    donors : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }]
+    
 })
 
 userSchema.plugin(passportLocalMongoose);
