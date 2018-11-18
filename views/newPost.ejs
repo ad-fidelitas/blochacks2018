@@ -1,0 +1,29 @@
+<% include partials/header %>
+
+<form action="/profile/post" method="post" enctype="multipart/form-data">
+  <div class="container">
+    <h4>Share a post</h4>
+
+  
+
+    <input id="upload" type="file" name="newPost" accept="image/jpg"> 
+    <br><br>
+    <input type="text" placeholder="Title" name="title" required>
+      <br><br>
+
+ <textarea name="content" placeholder="Share your story"></textarea>
+
+<br>
+    
+ 
+<br>
+      
+
+
+      
+      <button type="submit" id="submit" class="signupbtn">Post</button>
+    </div>
+
+</form>
+
+<% include partials/footer %>
