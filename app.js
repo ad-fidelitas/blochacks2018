@@ -49,9 +49,8 @@ app.use(function (req, res, next) {
 });
 
 // requiring routes
-
-app.use("/post", postRoutes);
 app.use(indexRoutes);
+app.use("/post", postRoutes);
 // app.use(profileRoutes);
 
 // MongoDB set-up
