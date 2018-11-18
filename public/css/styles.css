@@ -6,6 +6,10 @@ body {
   color: #d35637;
 }
 
+a {
+  text-decoration: none;
+}
+
 .section-title {
   margin-bottom: 4%;
   font-size: 60px;
