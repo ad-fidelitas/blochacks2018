@@ -72,6 +72,7 @@ ReceiverQueue.create({
     if(config.seed) {
         const seed = require("./seeding/seed");
         seed.exec()
+        // This does not find any users for some reason
         .then((res)=>User.find({}))
         .then((userDocs)=>{
             console.log(userDocs);
@@ -110,7 +111,7 @@ app.use(function (err, req, res, next) {
     res.status(500).send('Something broke!');
 });
 
-app.listen(3001, function (){
+app.listen(3005, function (){
     console.log('Server started on port 3000');
 });
 
