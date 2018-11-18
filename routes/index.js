@@ -28,6 +28,7 @@ router.get("/", function(req,res){
             }
         )
     });
+    res.render('index');
 })
 
 // how do I test this after the fact
