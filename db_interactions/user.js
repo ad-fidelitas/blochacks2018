@@ -7,13 +7,13 @@ function fetchUser(userId) {
 
 function fetchUserByUsername(username) {
     return User.findOne({username: username})
-    .then((res)=>{
-        if(res.username) {
-            return res;
+    .then((user)=>{
+        if(user) {
+            return user;
         }
         else {
-            throw Error("User not found")
-        }
+            throw new Error("User not found")
+        } 
     })
 }
 

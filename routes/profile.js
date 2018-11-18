@@ -8,7 +8,13 @@ router.get('/', (req, res) => {
     if(!req.user) {
         userDb.fetchUser(req.user._id)
         .then((currUser) => {
-            res.render('profile', {user : currUser})
+
+            let outBoundObject = {
+                profileData: currUser,
+                isReceiver : false,
+                posts: []
+            }
+            res.render('myProfile', {data : outBoundObject})
         })
         .catch((err) => {
             console.log(err);
