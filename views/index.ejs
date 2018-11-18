@@ -30,7 +30,7 @@
             
               <div class="mySlides fade">
                 <div class="numbertext">2 / 3</div>
-                <img src="/css/res/refugee-slideshow2.jpg" style="width:100%">
+                <img src="/css/res/refugee-slideshow2.jpg.jpeg" style="width:100%">
                 <div class="text">Mother from Sudan</div>
               </div>
             
@@ -58,7 +58,7 @@
             <% for (var i = 0; i < users.length; i++) { %>
               <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
                 <div class="mdl-card__media">
-                  <img src="/css/res/more-from-1.png">
+                      <img src="<%= users[i].proImgPath %>"/>
                 </div>
                 <div class="mdl-card__title">
                   <h4 class="mdl-card__title-text"><%= users[i].username %></h4>

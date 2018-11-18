@@ -25,7 +25,8 @@ function createUser(username, email, password, description) {
         posts: [],
         isReceiver: false,
         donors: [],
-        description: description
+        description: description,
+        proImgPath: "/css/res/default-user.png"
     }),
         password);
 }

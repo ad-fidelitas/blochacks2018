@@ -58,11 +58,7 @@
                   <% for (var i = data.posts.length-1; i >= 0; i--) { %>
                   <div class="post">
                     <div class="post-head">
-                    <% if (data.profileData.proImgPath != undefined) { %>
                       <img class="profile-pic" src="<%= data.profileData.proImgPath %>"/>
-                    <% } else { %>
-                      <img src="/css/res/default-user.png"/>
-                    <% } %> 
                       <div class="info"><span><a href="#"><%= data.profileData.username %></a></span></div>
                     </div>
                     <div class="post-content">
