@@ -48,24 +48,27 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", function(req,res){
+    // console.log("posted");
+
     let newPost = {
         title: req.body.title,
         timeStamp : new Date(new Date()),
         content: req.body.content
     };
 
-    postDb.createPost(newPost)
-    // .then((postDoc)=>userDb.addPost(userId, postDoc._id))
+    let userId = req.user._id;
+    console.log(req.user.posts);
+    // postDb.createPost(newPost)
+    // .then((postDoc)=>
+    userDb.addPost(userId, newPost)
     .then((postDoc)=>{
         res.json(postDoc);
     })
     .catch((err)=>{
-        // There needs to be response either way
         console.log(err)
         res.json(err);
     })
-
-    // res.redirect("mainProfile")
+    res.redirect("mainProfile")
 })
 
 

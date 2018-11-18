@@ -1,5 +1,6 @@
 const config = {
-    seed:true
+    seed:true,
+    init: true
 }
 
 const express               = require('express')
@@ -9,7 +10,9 @@ const express               = require('express')
       // Models:
       Post                  = require('./models/Post'),
       User                  = require('./models/User'),
-      multer = require('multer'),
+      ReceiverQueue         = require("./models/ReceiverQueue");
+      // Other stuff:
+      multer                = require('multer'),
       passport              = require('passport'),
       LocalStrategy         = require('passport-local'),
       passportLocalMongoose = require('passport-local-mongoose'),
@@ -49,9 +52,8 @@ app.use(function (req, res, next) {
 });
 
 // requiring routes
-
-app.use("/post", postRoutes);
 app.use(indexRoutes);
+app.use("/post", postRoutes);
 app.use("/profile", profileRoutes);
 
 // MongoDB set-up
@@ -61,17 +63,40 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
-if(config.seed) {
-    const seed = require("./seeding/seed");
-    seed.exec()
-    .then((res)=>{
-        console.log("ol")
-    })
-    .catch((err)=>{
-        console.log("seeding has failed");
-        console.log(err);
-    })
-}
+ReceiverQueue.create({
+    type: "recent",
+    users: [],
+    sizeLimit: 10
+})
+.then((queueDoc)=>{
+    if(config.seed) {
+        const seed = require("./seeding/seed");
+        seed.exec()
+        .then((res)=>{
+            return User.find({})
+        })
+        .then((userDocs)=>{
+            let userIds = userDocs.map((userDoc)=>userDoc._id);
+            return ReceiverQueue.findByIdAndUpdate(queueDoc._id, {users: userIds} );
+        })
+        .then((queueDoc)=>{
+            console.log("queueDocIsinitialized with seeded data");
+        })
+        .catch((err)=>{
+            console.log("seeding has failed");
+            console.log(err);
+        })
+    }
+})
+.catch((err)=>{
+    console.log(err);
+})
+
+
+
+
+
+
 
 
 

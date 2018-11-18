@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const postDb = require("./post");
 
 function fetchUser(userId) {
     return User.findById(userId);
@@ -32,9 +33,26 @@ function updateUser(userId, update) {
     return User.findByIdAndUpdate(userId, update);
 }
 
+function addPost(userId, post) {
+    postDb.createPost(post)
+    .then((postDoc)=>{
+        fetchUser(userId)
+        .then((userDoc)=>{
+            let oldposts = userDoc.posts;
+            let newposts = oldposts.slice();
+            newposts.push(postDoc._id);
+            return updateUser(userDoc._id, newPosts);
+        })
+        .then((userDoc)=>{
+            return new Promise((fulfill, reject)=>{fulfill(postDoc)});
+        });
+    })
+}
+
 module.exports = {
     createUser : createUser,
     fetchUserByUsername,fetchUserByUsername,
-    fetchUser: fetchUser,
-    updateUser:updateUser
+    updateUser:updateUser,
+    addPost: addPost,
+    fetchUser: fetchUser
 }

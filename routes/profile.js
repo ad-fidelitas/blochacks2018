@@ -5,9 +5,10 @@ const userDb = require("../db_interactions/user");
 const User = require('../models/User');
 
 router.get('/', (req, res) => {
-    if(req.user != undefined) {
+    if(!req.user) {
         userDb.fetchUser(req.user._id)
         .then((currUser) => {
+
             let outBoundObject = {
                 profileData: currUser,
                 isReceiver : false,
@@ -24,37 +25,68 @@ router.get('/', (req, res) => {
     }
 });
 
-router.get("/:user_id", function(req,res) {
-    let viewerId = undefined;
-    if (req.user != undefined) {
-        viewerId = req.user._id;
-    }
-    let receiver = req.params.user_id;
+router.get("/:user_id", function(res,req) {
+    let viewerId = req.user._id;
+    let receiverId = req.params.user_id;
+
     // Find out if you need to fetch the user from db (or if content )
     // maintained online
     
     // Im here assuming that I'm getting the information straight from the url, so
     // There will be a type problem here between the two type of ids
-    userDb.fetchUserByUsername(receiver)
+    userDb.fetchUser(receiver)
     .then((receiverDoc)=>{
         let outBoundObject = {
-            profileData: receiverDoc,
             isReceiver : false,
-            posts: []
+            posts: [],
+            name: receiverDoc.name,
         }
         // moneyRaised : receiverDoc.name
-        if (viewerId != undefined && (viewerId in receiverDoc.donors)) {
+        if (!(receiverId in viewerId.receivers)) {
             outBoundObject.posts = receiverDoc.posts;
-            outBoundObject.isReceiver = true;
+            receiverDoc.isReceiver = true;
         } 
-        res.render('profile', {data: outBoundObject})
+        res.json(outBoundObject);
         // res.render("feed", outBoundObject);
     })
     .catch((err)=>{
         // Error handling will need to be implemented
         console.log(err);
-        res.render('error');
     })
-})
+});
+
+// 
+router.post("/", function(req,res){
+    let update = req.body;
+    // req.user shoul always be active, but just in case
+    if(req.user) {
+        let userId = req.user.id;
+        let updateUserObject = {
+            moneyGoal: update.moneyGoal,
+            country : update.country,
+            isReceiver : true
+        }
+        return Promise.all(
+            queueDb.fetchRecentQueue()
+            .then((queueDoc)=>{
+    
+                let oldRecentReceivers = queueDoc.users;
+                let newRecentReceivers = oldRecentReceivers.slice();
+                if(newRecentReceivers.length > queueDoc.sizeLimit)
+                    newRecentReceivers.shift();
+                newRecentReceivers.push(userId);
+                return queueDb.updateQueue(queueDoc.id, {
+                    users:newRecentReceivers
+                })
+            }),
+            userDb.updateUser(userId, updateUserObject)
+        )
+        .then((queueDoc)=>{
+            res.redirect("/");
+        })
+    } else {
+        res.redirect("/");
+    }
+});
 
 module.exports = router;
