@@ -28,7 +28,15 @@ router.get("/", function(req,res){
     //         }
     //     )
     // });
-    res.render('index');
+    User.find({}, function (err, foundUsers) {
+        if (err) {
+            console.log(err);
+            res.render('index');
+        } else {
+            console.log(foundUsers)
+            return res.render('index', {users: foundUsers}) 
+        }
+    });
 })
 
 // how do I test this after the fact
