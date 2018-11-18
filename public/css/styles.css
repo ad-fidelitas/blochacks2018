@@ -2,7 +2,34 @@ body {
   margin: 0;
 }
 
-.fas {
+.fa-hand-holding-heart {
+  color: #d35637;
+}
+
+.support-buttons .fas {
+  color: #dee067;
+  transition: 0.7s;
+  vertical-align: middle;
+}
+
+.support-buttons {
+  padding-top: 20px;
+  width: 130px;
+  height: 130px;
+  margin-top: 5%;
+  margin-right: 4%;
+  display: inline-block;
+  border-radius: 50%;
+  border: solid #dee067 7px;
+  transition: 0.7s;
+}
+
+.support-buttons:hover {
+  transform: scale(1.2);
+  border-color: #d35637;
+}
+
+.support-buttons:hover .fas {
   color: #d35637;
 }
 
