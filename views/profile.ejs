@@ -56,8 +56,8 @@
                     <%} else {%>
                   <% for (var i = data.posts.length-1; i >= 0; i--) { %>
                   <div class="post">
-                    <div class="post-head"><img src="https://vignette3.wikia.nocookie.net/mugen/images/6/62/Gaben.jpg"/>
-                      <div class="info"><span><a href="#"><%= data.profileData.username %></a></span><span>June 18 at 6:30pm</span></div>
+                    <div class="post-head"><img src="/css/res/default-user.png"/>
+                      <div class="info"><span><a href="#"><%= data.profileData.username %></a></span></div>
                     </div>
                     <div class="post-content">
                       <p><%= data.posts[i].content %></p>
@@ -66,11 +66,11 @@
                       <% } %>
                     </div>
                     <div class="post-foot">
-                      <div class="social">
+                      <!-- <div class="social">
                         <div class="fa fa-thumbs-up"></div><span>Like</span>
                         <div class="fa fa-comment"></div><span>Comment</span>
                         <div class="fa fa-share"></div><span>Share</span>
-                      </div>
+                      </div> -->
                       <div class="comment">
                         <input type="text" placeholder="Write a comment..."/>
                       </div>
