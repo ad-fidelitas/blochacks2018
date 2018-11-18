@@ -5,7 +5,6 @@ const userDb = require("../db_interactions/user");
 const User = require('../models/User');
 
 router.get('/', (req, res) => {
-    console.log(req.user);
     if(req.user != undefined) {
         userDb.fetchUser(req.user._id)
         .then((currUser) => {

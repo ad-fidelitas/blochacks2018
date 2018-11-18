@@ -63,10 +63,17 @@ router.post("/", function(req,res){
         let newposts = oldposts.slice();
         newposts.push(postDoc._id);
         return userDb.updateUser(userId, {posts:newposts});
+
+
+
+    })
+    .then((aok)=>{
+        res.redirect("/profile")
     })
     .catch((err)=>{
         console.log(err);
     })
+
     // console.log(req.user.posts);
     // userDb.addPost(userId, newPost)
     // .then((postDoc)=>{
@@ -80,6 +87,11 @@ router.post("/", function(req,res){
     // })
     // res.redirect("mainProfile");
 
+
+
+
 })
+
+
 
 module.exports = router;
