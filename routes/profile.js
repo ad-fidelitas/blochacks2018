@@ -1,7 +1,23 @@
-const postDb = require("../db_interactions/post");
-const userDb = require("../db_interactions/user");
 const app = require("express");
 const router = app.Router();
+const postDb = require("../db_interactions/post");
+const userDb = require("../db_interactions/user");
+const User = require('../models/User');
+
+router.get('/', (req, res) => {
+    if(req.user != undefined) {
+        userDb.fetchUserUser(req.user._id)
+        .then((currUser) => {
+            res.render('profile', {user : currUser})
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect('/login');
+        });
+    } else {
+        res.redirect('/login');
+    }
+});
 
 router.get("/:user_id", function(res,req) {
     let viewerId = req.user._id;
@@ -32,3 +48,5 @@ router.get("/:user_id", function(res,req) {
         console.log(err);
     })
 })
+
+module.exports = router;

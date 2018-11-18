@@ -51,7 +51,7 @@ app.use(function (req, res, next) {
 // requiring routes
 app.use(indexRoutes);
 app.use("/post", postRoutes);
-// app.use(profileRoutes);
+app.use("/profile", profileRoutes);
 
 // MongoDB set-up
 mongoose.connect('mongodb://localhost:27017/blochacks', {useNewUrlParser:true});
