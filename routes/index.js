@@ -19,15 +19,15 @@ function isLoggedIn(req, res, next) {
 // Make a more recent Model
 router.get("/", function(req,res){
     // This functionality is based on the fact that Users and Receiver pages are created differently
-    homePageDbs.fetchQueues()
-    .then((queues)=>{
-        res.json(
-            {
-                recent: queues.filter((queue)=>(queue.type == "recent"))[0],
-                support: queues.filter((queue)=>(queue.type == "support"))[0]
-            }
-        )
-    });
+    // homePageDbs.fetchQueues()
+    // .then((queues)=>{
+    //     res.json(
+    //         {
+    //             recent: queues.filter((queue)=>(queue.type == "recent"))[0],
+    //             support: queues.filter((queue)=>(queue.type == "support"))[0]
+    //         }
+    //     )
+    // });
     res.render('index');
 })
 
