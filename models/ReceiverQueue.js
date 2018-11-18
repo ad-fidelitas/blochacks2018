@@ -2,7 +2,7 @@ const   mongoose = require("mongoose"),
         User = require("./Post");
 
 const MostSupportedReceiverSchema = new mongoose.Schema({
-    Users : [{
+    users : [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
