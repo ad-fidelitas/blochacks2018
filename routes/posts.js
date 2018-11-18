@@ -48,8 +48,6 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", function(req,res){
-    console.log(req.body);
-    
     // console.log("posted");
     let newPost = {
         title: req.body.title,
@@ -57,16 +55,29 @@ router.post("/", function(req,res){
         content: req.body.content
     };
     let userId = req.user._id;
-    console.log(req.user.posts);
-    userDb.addPost(userId, newPost)
+
+    postDb.createPost(newPost)
     .then((postDoc)=>{
-        console.log("here");
-        res.json(postDoc);
+        console.log(postDoc);
+        let oldposts = req.user.posts;
+        let newposts = oldposts.slice();
+        newposts.push(postDoc._id);
+        return userDb.updateUser(userId, {posts:newposts});
     })
     .catch((err)=>{
-        console.log(err)
-        res.json(err);
+        console.log(err);
     })
+    // console.log(req.user.posts);
+    // userDb.addPost(userId, newPost)
+    // .then((postDoc)=>{
+    //     console.log("here");
+    //     console.log(postDoc);
+    //     res.json(postDoc);
+    // })
+    // .catch((err)=>{
+    //     console.log(err)
+    //     res.json(err);
+    // })
     // res.redirect("mainProfile");
 
 })

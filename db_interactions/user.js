@@ -34,19 +34,29 @@ function updateUser(userId, update) {
 }
 
 function addPost(userId, post) {
+    
     return postDb.createPost(post)
     .then((postDoc)=>{
+        console.log(postDoc);
         fetchUser(userId)
         .then((userDoc)=>{
             let oldposts = userDoc.posts;
             let newPosts = oldposts.slice();
             newPosts.push(postDoc._id);
-            console(postDoc);
             return updateUser(userDoc._id, newPosts);
         })
         .then((userDoc)=>{
-            return new Promise((fulfill, reject)=>{fulfill(postDoc)});
+            console.log("¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬")
+            console.log(postDoc);
+            console.log("¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬")
+
+            return postDoc;
+            // return new Promise((fulfill, reject)=>{fulfill(postDoc)});
         });
+    })
+    .then((postDoc)=>{
+        console.log(postDoc);
+        return postDoc;
     })
 }
 

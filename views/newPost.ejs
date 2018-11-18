@@ -1,6 +1,16 @@
-<% include partials/header %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
 
-<form action="/profile/post" method="post" enctype="multipart/form-data">
+<form action="/profile/post" method="post">
   <div class="container">
     <h4>Share a post</h4>
 
@@ -8,11 +18,9 @@
 
     <input id="upload" type="file" name="newPost" accept="image/jpg"> 
     <br><br>
-    <input type="text" placeholder="Title" name="title" required>
+    <input type="text" placeholder="Title" name="title" id="title" required>
     <br><br>
-    <input type="text" placeholder="content" name="content" required>
-
-
+    <input  type="text" placeholder="content" name="content" id="content" required>
 <br>
     
  
@@ -23,7 +31,8 @@
       
       <button type="submit" id="submit" class="signupbtn">Post</button>
     </div>
-
 </form>
 
-<% include partials/footer %>
+  
+</body>
+</html>
