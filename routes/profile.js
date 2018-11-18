@@ -5,8 +5,8 @@ const userDb = require("../db_interactions/user");
 const User = require('../models/User');
 
 router.get('/', (req, res) => {
-    if(req.user != undefined) {
-        userDb.fetchUserUser(req.user._id)
+    if(!req.user) {
+        userDb.fetchUser(req.user._id)
         .then((currUser) => {
             res.render('profile', {user : currUser})
         })
@@ -47,6 +47,27 @@ router.get("/:user_id", function(res,req) {
         // Error handling will need to be implemented
         console.log(err);
     })
-})
+});
+
+
+router.post("/", function(req,res){
+    let update = req.body;
+    // req.user shoul always be active, but just in case
+    if(req.user) {
+        let userId = req.user.id;
+
+        let updateUserObject = {
+            moneyGoal: update.moneyGoal,
+            country : update.country
+        }
+
+        // pushpop this user on the stack
+
+        userDb.updateUser(userId, updateUserObject);
+
+    } else {
+        res.redirect("/");
+    }
+});
 
 module.exports = router;
