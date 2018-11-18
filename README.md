@@ -19,7 +19,7 @@ Hackathon project for Blochacks2018
 The landing page is separated into 3 sections:
 - Slogan and shortcuts: showcases our reasoning and purpose behind making the website.
 
-![](/../<mohamed>/images/slogan.png?raw=true)
+![](https://github.com/ad-fidelitas/blochacks2018/blob/mohamed/images/stories.png)
 
 - "Most in Need" slideshow: features the cases that need the most attention.
 - Stories: features all the stories based on date.
