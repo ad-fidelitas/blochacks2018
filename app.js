@@ -52,7 +52,7 @@ app.use(function (req, res, next) {
 
 app.use("/post", postRoutes);
 app.use(indexRoutes);
-// app.use(profileRoutes);
+app.use("/profile", profileRoutes);
 
 // MongoDB set-up
 mongoose.connect('mongodb://localhost:27017/blochacks', {useNewUrlParser:true});
