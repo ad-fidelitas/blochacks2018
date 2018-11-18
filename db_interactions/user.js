@@ -34,13 +34,14 @@ function updateUser(userId, update) {
 }
 
 function addPost(userId, post) {
-    postDb.createPost(post)
+    return postDb.createPost(post)
     .then((postDoc)=>{
         fetchUser(userId)
         .then((userDoc)=>{
             let oldposts = userDoc.posts;
-            let newposts = oldposts.slice();
-            newposts.push(postDoc._id);
+            let newPosts = oldposts.slice();
+            newPosts.push(postDoc._id);
+            console(postDoc);
             return updateUser(userDoc._id, newPosts);
         })
         .then((userDoc)=>{
