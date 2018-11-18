@@ -8,7 +8,7 @@ body {
 
 .support-buttons .fas {
   color: #dee067;
-  transition: 0.7s;
+  transition: 0.5s;
   vertical-align: middle;
 }
 
@@ -21,7 +21,7 @@ body {
   display: inline-block;
   border-radius: 50%;
   border: solid #dee067 7px;
-  transition: 0.7s;
+  transition: 0.4s;
 }
 
 .support-buttons:hover {

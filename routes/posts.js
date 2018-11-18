@@ -85,6 +85,32 @@ router.post("/", function(req,res){
             });
         }
 });
+})
+
+
+router.post("/edit", function(req,res){
+    upload(req, res, (err) => {
+        if (err) {
+            res.render('editPage', {msg : err});
+        } else {
+            if(req.file == undefined) {
+                return res.render('editPage', {msg: 'Error: No file selected'});
+            }
+            console.log(req.file.filename);
+            User.findOne({username : req.user.username}, function (err, foundUser) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    foundUser.description = req.body.description;
+                    foundUser.proImgPath = '/uploads/' + req.file.filename;
+                    foundUser.save();
+                    console.log(foundUser.proImgPath);
+                    res.redirect('/profile/' + req.user.username);
+                }
+            });
+        }
+});
+
     // console.log("posted");
     // let newPost = {
     //     title: req.body.title,
