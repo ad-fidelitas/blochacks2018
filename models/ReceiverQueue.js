@@ -1,7 +1,7 @@
 const   mongoose = require("mongoose"),
         User = require("./Post");
 
-const MostSupportedReceiverSchema = new mongoose.Schema({
+const ReceiverQueueSchema = new mongoose.Schema({
     users : [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -10,4 +10,4 @@ const MostSupportedReceiverSchema = new mongoose.Schema({
     type: String
 })
 // type will either be recent or supported
-module.exports = mongoose.model("MostSupportedReceiver", MostSupportedReceiverSchema);
+module.exports = mongoose.model("ReceiverQueue", ReceiverQueueSchema);

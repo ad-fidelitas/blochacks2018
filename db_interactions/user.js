@@ -6,7 +6,15 @@ function fetchUser(userId) {
 }
 
 function fetchUserByUsername(username) {
-    return User.findOne({username: username});
+    return User.findOne({username: username})
+    .then((res)=>{
+        if(res.username) {
+            return res;
+        }
+        else {
+            throw Error("User not found")
+        }
+    })
 }
 
 
@@ -44,7 +52,12 @@ function addPost(userId, post) {
 module.exports = {
     createUser : createUser,
     fetchUserByUsername,fetchUserByUsername,
+<<<<<<< HEAD
     fetchUserUser : fetchUser,
     updateUser:updateUser,
     addPost: addPost
+=======
+    fetchUser: fetchUser,
+    updateUser:updateUser
+>>>>>>> df854e62687eade7d5469f5b70484d112d26ff14
 }
